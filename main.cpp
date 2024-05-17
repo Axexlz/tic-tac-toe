@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
+
+
 int verificare(int mat[4][4]){
   // HORIZONTALA ---
   if(mat[1][1] == 1 && mat[1][2] == 1 && mat[1][3] == 1)
@@ -54,8 +56,16 @@ int OK(int i, int j, int m[4][4])
 }
 int main(){
 
-  int mat[4][4], s = 0 ,i ,j, nr = 0, aux, gasit = 0, num = 1, win = -1;
+  int mat[4][4], s = 0 ,i ,j, nr = 0, aux, gasit = 0, num = 1, win , a, p1 = 0, p2 = 0;
   int nrLinii = 3, nrColoane = 3;
+  cout << "Cate jocuri ati vrea sa jucati?\n";
+  cout << "Introduce numarul aici: ";
+  cin >> a;
+  for(int t = 1; t <= a; ++t)
+    {
+
+      cout << "Jocul cu numarul : " << t << "\n\n";
+  win = -1;
   // mat[i][j] = -1, daca nu este pus nimic si vom afisa spatiu gol
   // mat[i][j] = 0, daca este pus O
   // mat[i][j] = 1 daca este X
@@ -63,6 +73,8 @@ int main(){
     for(int j = 1; j <= 3; ++j)
       mat[i][j] = -1;
   cout << "-------------\n"; 
+
+      
   for (int i = 1; i <= 3; i++) { 
       cout << "| "; 
       for (int j = 1; j <= 3; j++) { 
@@ -119,16 +131,23 @@ int main(){
       if(verificare(mat) == 1)
         {
           cout << "Jucatorul " << num << "\n";
-          cout << "A CASTIGAT!";
+          cout << "A CASTIGAT!\n";
           win = num;
 
         }
-      
     }
+    // daca am iesit din for si nu avem niciun castigator inseamna ca cele 9
+    // casute au fost umplute si este remiza
+    if(win == -1)
+      cout << "REMIZA! FELICITARI AMBILOR JUCATORI!\n";
+    else
+    {
+      if(win == 1) p1++;
+      else p2++;
+    }
+  }
+  cout << "\n\n";
+  cout << "Player 1 | " << p1 << " : " << p2 << " | Player 2" ;
 
-  // daca am iesit din for si nu avem niciun castigator inseamna ca cele 9
-  // casute au fost umplute si este remiza
-  if(win == -1)
-    cout << "REMIZA! FELICITARI AMBILOR JUCATORI!";
   return 0;
 }
